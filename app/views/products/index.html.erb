@@ -1,0 +1,48 @@
+<%# content_for :sidebar do %>
+  <%#= hook :homepage_sidebar_navigation do %>
+    <%# if "products" == @current_controller && @taxon %>
+      <%#= render "shared/filters" %>
+    <%# else %>
+      <%#= render "shared/taxonomies" %>
+    <%# end %>
+  <%# end %>
+<%# end %>
+<div class="grid_12 slider-wrapper theme-default">
+  <div id="slider" class="nivoSlider">
+    <img src="/images/001.png"  />
+    <img src="/images/002.png"  />
+    <img src="/images/000.png" />
+    <img src="/images/002.png"  />
+  </div>
+</div>
+<div style="margin-left:-30px;">
+  <img src="/images/image11.jpg"  />
+</div>
+<div class="grid_12 padd"></div>
+<div style="margin-top:50px" ></div>
+<br />
+
+<% if params[:keywords] %>
+  
+  <%= hook :search_results do %>
+    <% if @products.empty? %>
+      <%= t(:no_products_found) %>
+    <% else %>
+      <%= render "shared/products", :products => @products, :taxon => @taxon %>
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <%= hook :homepage_products do %>
+    <%= render "shared/products", :products => @products, :taxon => @taxon %>
+  <% end %>
+
+
+<% end %>
+
+<script type="text/javascript">
+ $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    </script> 

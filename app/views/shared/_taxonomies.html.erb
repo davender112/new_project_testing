@@ -1,0 +1,19 @@
+<div id="taxonomies" class="sidebar-item">
+  <% get_taxonomies.each do |taxonomy| %>
+    <ul class="navigation-list" style="position:relative;">
+      <li<%== ' class="current"' if @taxon && @taxon == taxonomy.root %>>
+        <%= link_to taxonomy.name, '#',
+                                          :class => 'root',:onclick=> "show_contract_popup()" %>
+        <%#= link_to t("shop_by_taxonomy", :taxonomy => taxonomy.name.singularize), '#',
+                                          :class => 'root',:onclick=> "show_contract_popup()" %>
+      </li>
+      <!-- <div id="cs" class="cs_popup_innerr " style="display:none;"> -->
+      <% taxonomy.root.children.each do |taxon| %>
+        <li<%== ' class="current"' if @taxon and ([@taxon] + @taxon.ancestors).include?(taxon) %>>
+          <%= link_to taxon.name, seo_url(taxon) %>
+        </li>
+	    <% end %>
+      <!--</div> -->
+	  </ul>
+  <% end %>
+</div>

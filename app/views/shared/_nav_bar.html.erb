@@ -1,0 +1,49 @@
+<div class="top_head">
+  <div class="top_headhead">
+    <div class="site_logo"><img src="/images/logo.png" alt="img" /></div>  
+    <div class="site_form">
+      <% if current_user %>
+        <%= link_to t('my_account'), account_path, :style => "color:aliceBlue;" %>&nbsp; /&nbsp;
+        <%= link_to t('logout'), destroy_user_session_path, :style => "color:aliceBlue;" %>
+      <% else %>
+        <%= link_to "Have an account?", login_path , :style => "color:aliceBlue;" %>
+        &nbsp;/ &nbsp;<%= link_to "SignUp", signup_path, :style => "color:aliceBlue;" %>
+      <% end %>
+      &nbsp;&nbsp;&nbsp;
+      <%= form_tag products_url, :method => :get do %>
+        <%= text_field_tag :keywords, params[:keywords], :style=> "padding-top:2px;" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="top_header1">
+  <div class="top_header">
+    <div class="navigation">
+      <ul class="nav">
+        <% get_taxonomies.each do |taxonomy| %>
+          <li>
+            <%= link_to taxonomy.name, seo_url(taxonomy.root)%>
+          </li>
+        <% end %>
+        <li><a href="#">Corporate</a></li>
+        <li><a href="#">Sale</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Sports</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header" class="container_bg">
+    <div class="container">
+      <!--<ul id="nav-bar">
+      <li>24 Hour Support</li>
+      <%#= hook :shared_login_bar %>
+      <% #if store_menu? %>
+      <%#= render 'shared/store_menu' %>
+      <% #end %>
+      <br />
+      <li><%#= render 'shared/search' %></li>
+      </ul>-->
+      <ul class="top_menu"></ul>
+    </div>
+  </div>
+</div>
